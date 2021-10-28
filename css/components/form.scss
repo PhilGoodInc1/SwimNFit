@@ -51,6 +51,12 @@
 }
 
 
+.error {
+  box-shadow: 0 1px 10px red;
+  z-index: 1;
+  border-bottom: none;
+}
+
 @media (max-width: 1024px) {
   .form {
     &__close {

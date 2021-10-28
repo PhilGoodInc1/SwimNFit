@@ -375,3 +375,7 @@ template {
 [hidden] {
     display: none;
 }
+
+input:focus-visible, textarea:focus-visible {
+   outline: none;
+}

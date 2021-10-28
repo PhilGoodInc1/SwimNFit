@@ -1,3 +1,91 @@
+//form validation
+
+const form = document.getElementById('form');
+const usernameEl = document.querySelector('#name');
+const phoneEl = document.querySelector('#phone');
+
+
+const isRequired = value => value === '' ? false : true;
+
+const isPhoneValid = (phone) => {
+    const re = /^\d[\d\(\)\ +-]{4,14}\d$/;
+    return re.test(phone)
+};
+
+const showError = (input) => {
+    input.classList.add('error');
+};
+
+const showSuccess = (input) => {
+    input.classList.remove('error');
+};
+
+const checkUsername = () => {
+
+    let valid = false;
+    const username = usernameEl.value.trim();
+    if (!isRequired(username)) {
+        showError(usernameEl);
+    } else {
+        showSuccess(usernameEl);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkPhone = () => {
+    let valid = false;
+    const phone = phoneEl.value.trim();
+    if (!isRequired(phone)) {
+        showError(phoneEl);
+    } else if (!isPhoneValid(phone)) {
+        showError(phoneEl)
+    } else {
+        showSuccess(phoneEl);
+        valid = true;
+    }
+    return valid;
+};
+
+form.addEventListener('input', function (event) {
+    switch (event.target.id) {
+        case 'name':
+            checkUsername();
+            break;
+        case 'phone':
+            checkPhone();
+            break;
+    }
+});
+
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let isUsernameValid = checkUsername(),
+        isPhoneValid = checkPhone();
+
+    if (isUsernameValid && isPhoneValid) {
+        form.submit();
+        closeForm();
+    }
+});
+
+
+// form handler
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById('form').reset();
+    document.getElementById("myForm").style.display = "none";
+    showSuccess(usernameEl);
+    showSuccess(phoneEl);
+}
+
+
+
 //smooth scroll
 
 const anchors = document.querySelectorAll('a[href*="#"]');
@@ -39,15 +127,6 @@ for (let anchor of anchors) {
 }());
 
 
-// form handler
-
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-}
 
 
 

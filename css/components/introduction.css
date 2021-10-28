@@ -10,6 +10,9 @@
   .introduction_name {
     font-size: 48px;
     line-height: 58px; }
+  .introduction_logo {
+    width: 50px;
+    padding-bottom: 9px; }
   .introduction_poster {
     max-width: 100%;
     height: calc(100vw * 0.33);
@@ -27,6 +30,8 @@
     display: none; }
     .introduction_poster-long {
       display: block; }
+  .introduction_logo {
+    display: none; }
 
   .language-switch {
     display: none; } }
