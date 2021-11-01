@@ -129,7 +129,7 @@
         <div class="contacts_wrapper">
 
             <div class="form-popup" id="myForm">
-                <form id ='form' class="form site-container" action="send.php" method="POST">
+                <form id='form' class="form site-container" action="send.php" target="hiddenframe" method="POST">
 
                     <input class="form__input" type="text" id="name" name="name" placeholder="Your name">
                     <input class="form__input" type="tel" id="phone" name="phone" placeholder="Phone number">
@@ -157,6 +157,16 @@
                 </li>
             </ul>
         </div>
+
+        <div class="form-submitted__window site-container">
+            <text>Your message successfully sent.<br/>
+                I'll contact you as soon as possibly.
+            </text>
+            <div class="form-submitted__close">
+                <span class="close-line"></span>
+                <span class="close-line"></span>
+            </div>
+        </div>
     </section>
 </main>
 <footer class="footer site-container">
@@ -165,6 +175,8 @@
         <a href="#header"><img class="footer_top-logo" src="images/up-chevron.svg" alt="to top"></a>
     </div>
 </footer>
+
+<iframe name="hiddenframe" id="hiddenframe" style="display: none;"></iframe>
 </body>
 
 </html>

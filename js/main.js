@@ -8,7 +8,7 @@ const phoneEl = document.querySelector('#phone');
 const isRequired = value => value === '' ? false : true;
 
 const isPhoneValid = (phone) => {
-    const re = /^\d[\d\(\)\ +-]{4,14}\d$/;
+    const re = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
     return re.test(phone)
 };
 
@@ -61,12 +61,23 @@ form.addEventListener('input', function (event) {
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
+
     let isUsernameValid = checkUsername(),
         isPhoneValid = checkPhone();
 
     if (isUsernameValid && isPhoneValid) {
-        form.submit();
-        closeForm();
+
+        function openSubmittedFormWindow () {
+            const submittedWindow = document.querySelector('.form-submitted__window');
+            submittedWindow.style.display = "flex"
+        }
+
+        async function submitForm() {
+            form.submit();
+            closeForm();
+        }
+
+        submitForm().then(closeForm).then(openSubmittedFormWindow)
     }
 });
 
@@ -84,6 +95,15 @@ function closeForm() {
     showSuccess(phoneEl);
 }
 
+// form submitted window handler
+
+(function () {
+    const submittedWindow = document.querySelector('.form-submitted__window');
+    const windowCloseItem = document.querySelector('.form-submitted__close');
+    windowCloseItem.addEventListener('click', () => {
+        submittedWindow.style.display = "none"
+    });
+}());
 
 
 //smooth scroll
@@ -117,7 +137,7 @@ for (let anchor of anchors) {
     menuCloseItem.addEventListener('click', () => {
         menu.classList.remove('header_items-wrapper_active')
     });
-    if (window.innerWidth <  780) {
+    if (window.innerWidth < 780) {
         for (let i = 0; i < menuLinks.length; i += 1) {
             menuLinks[i].addEventListener('click', () => {
                 menu.classList.remove('header_items-wrapper_active');

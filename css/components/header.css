@@ -70,5 +70,8 @@
     z-index: 11; }
   .header_burger {
     display: block; } }
+@media (max-width: 480px) {
+  .header_item {
+    font-size: 30px; } }
 
 /*# sourceMappingURL=header.css.map */

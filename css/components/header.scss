@@ -103,6 +103,12 @@
   }
 }
 
-
+@media  (max-width: 480px)  {
+  .header {
+    &_item {
+      font-size: 30px;
+    }
+  }
+}
 
 
